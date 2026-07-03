@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+.expandableContainer{
+	position:relative;
+	font-family: "Smiley Sans Oblique";
+		display: flex;
+		flex-direction: row;
+		width: auto;
+		height: 75vh;
+		aspect-ratio: 0.45;
+		transition: 0.5s ease-in-out;
+		border-radius: 0px;
+		transform: translate(0%,0%);
+		cursor:pointer;
+		margin-left: 5vh;
+		margin-right: 5vh;
+		overflow: hidden;
+		opacity: 1;
+		border-right: 1px #fff solid;
+	}
+	.expandableContainer:hover{
+		width: auto;
+		height: 85vh;
+		aspect-ratio: 0.4;
+	}
+	
+	.ECActive{
+		position: relative;
+		/*left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);*/
+		width: auto;
+		height: 85vh;
+		aspect-ratio: 4/3;
+	}
+	.ECActive:hover{
+		width: auto;
+		height: 85vh;
+		aspect-ratio: 4/3;
+		cursor: default;
+	}
+	
+	.mainExpandingContainer{
+		font-family: "Smiley Sans Oblique";
+		position: absolute;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+		width: 500vw;
+		height: 90vh;
+		top: 50vh;
+		left: 50vw;
+		transform: translate(-51%,-50%);
+		transition: 0.5s ease-in-out;
+	}
+	
+	.ECCoverImg{
+		position: relative;
+		top: 0%;
+		left: 0%;
+		background-size: cover;
+		background-position: center;
+		width: auto;
+		height: 100%;
+		aspect-ratio: 0.45;
+		cursor: pointer;
+		z-index: 10000;
+		transition: 0.5s ease-in-out;
+		background-color: rgba(150,150,150,0);
+		/*background-blend-mode: luminosity;*/
+	}
+	.ECCoverImg:hover{
+		aspect-ratio: 0.4;
+		background-color: rgba(0,0,0,0);
+	}
+	
+	.ECText{
+		font-family: "Smiley Sans Oblique";
+		position:relative;
+		justify-content: center;
+		align-content: center;
+		left: 50%;
+		top: 50%;
+		transform: translate(-81%,-50%);
+		height: 100%;
+		aspect-ratio: 0.8;
+		font-size: 2.7vh;
+		width: auto;
+		color: #eee;
+	}
+	.ECText h1{
+		font-size: 5vh;
+	}
+	.ECText a{
+		font-size: 3.2vh;
+		color: #eee;
+	}
+	.ECCloseBtn{
+		position: relative;
+		top: 25%;
+		right: 7.5%;
+		font-size: 5vh;
+		color: #eee;
+		background-color: none;
+		transition: 0.2s ease;
+		cursor: pointer;
+		text-align: center;
+		align-content: center;
+		height: 5.2vh;
+		width: 5.2vh;
+	}
+	.ECCloseBtn:hover{
+		background-color: #222;
+		color: #CCC;
+	}
+	
+	.linkDescriptionBar{
+		left: 0%;
+		font-size: 5.5vh;
+		align-content: center;
+		text-align: center;
+		justify-content: center;
+		border-top: 1px solid #fff;
+		position: fixed;
+		height: 10vh;
+		bottom: 0vh;
+		width: 100vw;
+		color: #eee;
+		transition: 0.5s ease-out;
+	}
+	.LDBHidden{
+		bottom: -10.1vh;
+	}
+	

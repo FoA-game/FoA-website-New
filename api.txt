@@ -1,0 +1,9 @@
+Convai API credentials have been moved to the Vercel backend.
+
+Set this environment variable in Vercel:
+
+CONVAI_API_KEY=<your-new-convai-api-key>
+
+NPC character/session IDs are configured in:
+
+api/chat.js

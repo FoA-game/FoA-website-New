@@ -1,0 +1,261 @@
+@charset "utf-8";
+/* CSS Document */
+
+.GterritoryContainer{
+	position: relative;
+	height: 7vh;
+	aspect-ratio: 5;
+	width: auto;
+	border-left: 1px #fff solid;
+	transition: 0.3s ease;
+}
+
+.GterritoryBkg{
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	clip-path: inset(0 100% 0 0);
+	transition: 0.5s ease-in-out;
+	color: #fff;
+	background-color: #36d;
+	font-size: 4.7vh;
+	text-align: left;
+	padding-left: 2vh;
+}
+
+.GterritoryName{
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	color: #ddd;
+	font-size: 4.7vh;
+	text-align: left;
+	align-content: center;
+	padding-left: 2vh;
+	cursor: pointer;
+	transition: 0.2s ease;
+}
+.GterritoryName:hover{
+	background-color: rgba(38,47,212,0.77);
+}
+
+.GterritoryCirc{
+	position: absolute;
+	left: 0%;
+	bottom: 0%;
+	border-radius: 2vh;
+	height: 2vh;
+	width: 2vh;
+	border: 2px #fff solid;
+	background-color: rgba(24,53,184,0.70);
+	transform: translate(-50%, 50%);
+}
+
+#GT-UN{
+	left: 50vw;
+	top: 50vh;
+	transform: translate(-50%,-410%);
+}
+#GT-MC{
+	left: 50vw;
+	top: 50vh;
+	transform: translate(75%,-295%);
+}
+#GT-LN{
+	left: 50vw;
+	top: 50vh;
+	transform: translate(-50%,-240%);
+}
+#GT-FT{
+	left: 50vw;
+	top: 50vh;
+	transform: translate(120%,-40%);
+}
+#GT-FB{
+	left: 50vw;
+	top: 50vh;
+	transform: translate(-150%,-220%);
+}
+#GT-CG{
+	left: 50vw;
+	top: 50vh;
+	transform: translate(70%,50%);
+}
+
+#randomCodeCanvas{
+	width: 100%;
+	height: 100%;
+}
+
+#conversationLayer{
+	position: absolute;
+	top: 50vh;
+	left: 50vw;
+	transform: translate(-50%,-50%);
+	display: none;
+	width: 100vw;
+	height: 0.1vh; /*80*/
+	border-top: 1px #fff solid;
+	border-bottom: 1px #fff solid;
+	opacity: 0;
+	transition: 0.5s ease-in-out;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	background-color: rgba(0,0,0,0.2);
+	--conversation-background-image: none;
+	overflow: hidden;
+	
+}
+
+#conversationLayer::before{
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: var(--conversation-background-image);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.22;
+	pointer-events: none;
+	z-index: -1;
+}
+
+#conversationLayer::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.46) 48%, rgba(0,0,0,0.68) 100%);
+	pointer-events: none;
+	z-index: -1;
+}
+
+#CbackBtn{
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	height: 5vh;
+	width: 7vh;
+	font-size: 3.7vh;
+	color: #ddd;
+	margin: 3vh;
+	background-color: rgba(0,0,0,0);
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+	border-left: 1px solid #fff;
+	text-align: center;
+	padding-right: 3vh;
+	align-content: center;
+	justify-content: center;
+	padding-left: 3vh;
+	display: flex;
+}
+#CbackBtn:hover{
+	color: black;
+	background-color: rgba(225,225,225,1);
+}
+
+#conversationInput{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-20%, 410%);
+	height: 7%;
+	width: 50%;
+	border-style: none;
+	border-radius: 0px;
+	border-top: 1px #fff solid;
+	border-bottom: 1px #fff solid;
+	color: #fff;
+	font-size: 2.8vh;
+	background-color: rgba(0,0,0,0);
+}
+
+#CsendBtn{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(352%, 620%);
+	height: 6%;
+	width: 14vh;
+	font-size: 3.7vh;
+	color: #ddd;
+	margin: 3vh;
+	background-color: rgba(0,0,0,0);
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	text-align: center;
+	align-content: center;
+}
+#CsendBtn:hover{
+	color: #36d;
+	background-color: rgba(225,225,225,1);
+}
+#CsendBtn:active{
+	color: black;
+	background-color: rgba(225,225,225,1);
+}
+
+#conversationHistory{
+	position: absolute;
+	padding-left: 3vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-23%, -58%);
+	height: 70%;
+	width: 50%;
+	/*border-left: 1px #fff solid;*/
+	font-family: 'Smiley Sans Oblique';
+	color: aliceblue;
+	font-size: 2.8vh;
+	transition: 0.2s ease;
+	overflow-y: auto;
+	padding-right: 2vh;
+}
+#conversationHistory::-webkit-scrollbar-track{
+	background-color: rgba(0,0,0,0);
+}
+
+#CprofileContainer{
+	position: relative;
+	height: 75%;
+	width: 30%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-140%, -50%);
+}
+
+#CprofilePicture{
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 80%;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('images/defaultPFP.webp');
+}
+
+#CprofileName{
+	height: 7vh;
+	width:100%;
+	position: absolute;
+	left: 0%;
+	bottom: 6.5%;
+	color: #fff;
+}
+
+#CprofileLoc{
+	height: 3.2vh;
+	width:100%;
+	position: absolute;
+	left: 0%;
+	bottom: 0.5%;
+	color: #aaa;
+}

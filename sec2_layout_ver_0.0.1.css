@@ -1,0 +1,129 @@
+@charset "utf-8";
+/* CSS Document */
+
+#particle-canvas{
+	position: absolute;
+	left: 45vw;
+	top: 15vh;
+	width: 72vh;
+	height: 72vh;
+	transition: 0.5s ease-in-out;
+}
+
+#particle-bkg-canvas{
+	position: fixed;
+	left: 0%;
+	top: 0%;
+	width: 100vw;
+	height: 100vh;
+}
+
+#intro-container{
+	display:flex;
+	position: absolute;
+	top: 50vh;
+	right: 15vh;
+	height: 30vh;
+	width: 40vw;
+	justify-content: space-between;
+	align-content: center;
+	align-items: flex-start;
+	font-size: 3.4vh;
+	word-wrap: normal;
+	color: #ccc;
+	
+	border-top: 1px #fff solid;
+	
+	opacity: 0;
+	transition: 0.55s ease;
+	text-shadow: 5px 5px 7px #222;
+	
+}
+
+#intro-title{
+	position: absolute;
+	width: 40vw;
+	top: 40vh;
+	right: 15vh;
+	height: 7vh;
+}
+
+#intro-options{
+	display: flex;
+	position: absolute;
+	left: 15vw;
+	top: 27vh;
+	width: 30vw;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: left;
+	height: 40vh;
+	transition: 0.5s ease;
+}
+
+.territoryName{
+	height: 6.7vh;
+	width: 30vw;
+	border-top: 1px #777 solid;
+	border-bottom: 1px #777 solid;
+	color: #aaa;
+	font-size: 3.7vh;
+	text-align: left;
+	align-content: center;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+}
+.territoryName:hover{
+	height: 10vh;
+	font-size: 5vh;
+	color: #fff;
+}
+.territoryName:hover a{
+	font-size: 3.7vh;
+	color: #a24;
+}
+.territoryName a{
+	color: #36d;
+}
+
+#backBtn{
+	position: fixed;
+	top: 47vh;
+	left: 15vw;
+	height: 5.3vh;
+	width: 12vh;
+	font-size: 4.5vh;
+	color: #ddd;
+	margin: 3vh;
+	background-color: rgba(0,0,0,0);
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+	border-right: 1px solid #fff;
+	text-align: right;
+	padding-right: 3vh;
+	align-content: center;
+	opacity: 0;
+	display: none;
+}
+#backBtn:hover{
+	color: black;
+	background-color: rgba(225,225,225,1);
+}
+
+#topCurtain{
+	position: fixed;
+	width: 100vw;
+	height: 10vh;
+	top: -11vh;
+	border-bottom: 1px #ddd solid;
+	transition: 0.5s ease-in-out;
+}
+
+#botCurtain{
+	position: fixed;
+	width: 100vw;
+	height: 10vh;
+	bottom: -11vh;
+	border-top: 1px #ddd solid;
+	transition: 0.5s ease-in-out;
+}

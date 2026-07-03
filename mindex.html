@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="preload" href="m_layout_ver_1.0.0.css" as="style">
+	
+<title>FOA OFFICIAL WEBSITE</title>
+	<link rel="stylesheet" href="m_layout_ver_1.0.0.css">
+	<style>
+		@font-face {
+			font-family: 'Smiley Sans Oblique';
+			src: url('fonts/SmileySans-Oblique.otf.woff2') format('woff2'),url('fonts/SmileySans-Oblique.ttf') format('ttf');
+			font-weight: normal;
+			font-style: normal;
+		}
+		
+		body,html {
+			margin: 0;
+			padding: 0;
+			max-width: 700px;
+			font-family: "Smiley Sans Oblique";
+			/*min-height: 200vh;*/
+			/*max-height: 100.1vh;*/
+			overflow-y:auto;
+			overflow-x: hidden;
+			background-image: none;
+			background-color: none;
+			-webkit-user-select: none;  /* Safari */
+			-moz-user-select: none;     /* Firefox */
+			-ms-user-select: none;      /* Internet Explorer/Edge */
+  		}
+		
+		#loader{
+			position: fixed;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			background-color: #000;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: 10000000000;
+			opacity: 1;
+			transition: 0.5s ease;
+			transition-delay: 0.2s;
+	}
+	#loader img{
+		width: 60vw;
+		height: auto;
+	}
+	</style>
+	
+	<script>
+        window.onload= function(){
+            let aspectRatio = window.innerWidth / window.innerHeight;
+            if(aspectRatio > 1.15) {
+				window.location.href="index.html";
+            }
+        };
+		
+		window.onresize= function(){
+			aspectRatio = window.innerWidth / window.innerHeight;
+			if(aspectRatio > 1.15) {
+				window.location.href="index.html";
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="loader"><img alt="loading indicator" src="images/loader.webp"></div>
+	
+	<div id="bkg-element">
+		<canvas id="scifi-canvas"></canvas>
+		<div id="bkgfilter"></div>
+	</div>
+	
+	<div id="st0" class="container" style="border-top: none; z-index: 1000;">
+		<div id="logoContainer">logo placeholder</div>
+		<div id="mainTitleContainer"></div>
+		<div id="homeMenuContainer">
+				<div class="homeMenuOption">
+					PLAY THE GAME<br><br>
+					<a id="eventBtn">Current Events</a><br><br>
+					<a id="signUpBtn">Sign up for mailing list</a>
+				</div>
+				<div class="homeMenuOption"><br><br><br></div>
+				<div class="homeMenuOption">
+					GET THE BOX<br><br>
+					<a>Purchase</a><br><br>
+					<a id="mobilePrintableVersionBtn" href="#resources">Printable Version</a>
+				</div>
+		</div>
+	
+	</div>
+	
+	
+	<div id="st1" class="container" style="z-index: 1000;">
+		<!--Events-->
+		<h1>Current Events</h1>
+	</div>
+	
+	<div id="st2" class="container" style="height: 80vh; display: flex; flex-direction: column; justify-content:flex-start; z-index: 1001; overflow: auto;">
+		<div class="intro-section">
+			<h1>UPPER NUOVARTICA</h1>
+			Nuovartica, the only paradise of human civilization, promises to ensure the personal safety of every resident at all costs. <br>After the Great Disruption, the survivors constantly remind themselves that the shadows of war, disease, hunger, and death have never been far away.
+		</div>
+		<div class="intro-section">
+			<h1>MIRROR CITY</h1>
+			This is a city steeped in the twilight of yesteryears. Following the Second Great Disruption, the grand city of Artica was reduced to ashes. <br>Yet, its survivors, driven by nostalgia, endeavored to resurrect the city on the northern side of the canyon.
+		</div>
+		<div class="intro-section">
+			<h1>LOWER NUOVARTICA</h1>
+			Known as the Neon Ruins, the streets at night shimmer with unending glows from cheap neon lights, weaving a tapestry of vivid shadows amidst the fog.
+		</div>
+		<div class="intro-section">
+			<h1>FORTRESS</h1>
+			A behemoth of steel, Fortress, looms over the barren landscape, undoubtedly a pinnacle of human industrial achievement.
+		</div>
+		<div class="intro-section">
+			<h1>FON BAY</h1>
+			72 years ago, souls yearning for freedom shattered the chains of the White Tower, embarking on a fearless venture to challenge Upper Nuovartica. These rebels founded a city amidst desolation -- Fon Bay.
+		</div>
+		<div class="intro-section">
+			<h1>CRESCENT GARDEN</h1>
+			This land, once known as the "Vitala-Rey Biosphere Reserve", shares a narrative as ancient as the earth itself, coursing with the blood and memories of its indigenous peoples.
+		</div>
+		<!--Introduction-->
+	</div>
+	
+	<div id="st3" class="container" style="z-index: 1002; display: flex; flex-direction: column; justify-content:space-between; ">
+		<!--Communication-->
+		<div class="intro-section">
+			<h1>Player</h1>
+			Every world begins with players. Creative minds. Bold choices. Shared stories.
+		</div>
+		<div class="intro-section">
+			<h1>Facilitator</h1>
+			World-builders and guides. Creating the conditions for exploration, connection, and discovery.
+		</div>
+		<div class="intro-section">
+			<h1>Contributor</h1>
+			An evolving open world shaped by students, artists, educators, coders, researchers, and curious builders across the globe.
+		</div>
+		
+	</div>
+	
+	<div id="st4" class="container" style="z-index: 1003;">
+		<!--Resources-->
+		<div class="intro-section">
+			<h1>Research</h1>
+			<a>https://scholar.google.ca/citations?user=JuwMw-EAAAAJ&hl=en&oi=sra</a>
+		</div>
+		<div class="intro-section">
+			<h1>Resources</h1>
+			NPC Links<br>
+			<a id="mobileNpcLinksBtn" href="#play">Talk to NPCs in Play</a><br>
+			<a href="https://drive.google.com/file/d/1mkDzB9FpnT3Pejta-Xd43kR0506XKWQF/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Printable Recourses</a>
+		</div>
+		
+	</div>
+	
+	
+	
+	<div id="topNavBar">
+		<div id="navIcon"></div>
+		<div id="navTitle">FOA title</div>
+	</div>
+	<div id="navMenuBtn"></div>
+	<div id="navMenu">
+		<!--Place holder-->
+		<div class="linkBtn"></div>
+		<!--Place holder-->
+		<!--<a class="linkBtn" title="Events info“-->
+		<div id="nb0" class="linkBtn">✧Home</div>
+		<div id="nb1" class="linkBtn">✧Current Events</div>
+		<div id="nb2" class="linkBtn">✧Introduction</div>
+		<div id="nb3" class="linkBtn">✧Communication</div>
+		<div id="nb4" class="linkBtn">✧Resources</div>
+		
+		
+	</div>
+	<div id="navCurtain">
+		<div id="backArrow"></div>
+	</div>
+	
+	<script src="scripts/text_animation_ver_1.0.0.js"></script>
+	<script src="scripts/scifi_animation_ver_1.0.1.js"></script>
+	
+	
+	<script>
+	window.addEventListener('load',()=>{
+			const loader = document.getElementById('loader');
+			const mainTitle = document.getElementById('mainTitleContainer');
+			const mainLogo = document.getElementById('logoContainer');
+			//console.log("!EVENT: LOAD.");
+			loader.style.opacity = '0';
+			setTimeout(()=>{
+				loader.style.display = `none`;
+				slideIn("FOA",mainTitle,500);
+				mainLogo.style.opacity= 1;
+				document.getElementById('homeMenuContainer').style.opacity=1;
+			},600);
+			
+		});
+		
+		document.addEventListener('DOMContentLoaded', function(){
+		const navBarIcon = document.getElementById('navIcon');
+		const navBarTitle = document.getElementById('navTitle');
+		const menuBtn = document.getElementById('navMenuBtn');
+		const navMenu = document.getElementById('navMenu');
+		const navCur = document.getElementById('navCurtain');
+		
+		var yLocation = window.scrollY;
+		
+		window.addEventListener('scroll',function(){
+			yLocation = window.scrollY;
+			if(yLocation < 50){
+				navBarIcon.style.transform="translate(0px,0px)";
+				navBarTitle.style.opacity = 1;
+			}else{
+				navBarIcon.style.transform="translate(55%,0px)";
+				navBarTitle.style.opacity = 0;
+				
+			}
+		});
+		
+		menuBtn.addEventListener('click', function(){
+			navMenu.style.left="0px";
+			navCur.style.transitionDelay = "0.2s";
+			navCur.style.right="0px";
+		});
+		navCur.addEventListener('click', function(){
+			navMenu.style.left="-90vw";
+			navCur.style.transitionDelay = "0s";
+			navCur.style.right="-20vw";
+			
+		});
+		
+	});
+		
+	const nv0=document.getElementById('nb0');
+	const nv1=document.getElementById('nb1');
+	const nv2=document.getElementById('nb2');
+	const nv3=document.getElementById('nb3');
+	const nv4=document.getElementById('nb4');
+		
+	const sc0=document.getElementById('st0');
+	const sc1=document.getElementById('st1');
+	const sc2=document.getElementById('st2');
+	const sc3=document.getElementById('st3');
+	const sc4=document.getElementById('st4');
+		
+	nv0.addEventListener('click', ()=>{
+		sc0.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById('navCurtain').click();
+	});
+	nv1.addEventListener('click', ()=>{
+		sc1.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById('navCurtain').click();
+	});
+	nv2.addEventListener('click', ()=>{
+		sc2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById('navCurtain').click();
+	});
+	nv3.addEventListener('click', ()=>{
+		sc3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById('navCurtain').click();
+	});
+	nv4.addEventListener('click', ()=>{
+		sc4.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById('navCurtain').click();
+	});
+		
+
+	document.getElementById('mobilePrintableVersionBtn').addEventListener('click', (event)=>{
+		event.preventDefault();
+		sc4.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	});
+
+	document.getElementById('mobileNpcLinksBtn').addEventListener('click', (event)=>{
+		event.preventDefault();
+		sc2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	});
+	</script>
+</body>
+</html>
