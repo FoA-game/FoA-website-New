@@ -1,0 +1,13 @@
+{
+	"name": "foa-website-new",
+	"version": "1.0.0",
+	"private": true,
+	"description": "FoA official website and chat API",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"engines": {
+		"node": ">=20"
+	}
+}
