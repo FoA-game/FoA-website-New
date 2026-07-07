@@ -1,11 +1,11 @@
 @charset "utf-8";
-/*主容器伪类*/
+/* Main parallax container */
 .parallax-container {
     	position: relative;
     	width: 100vw;
     	height: 100vh;
 }
-/*通用子元素样式*/
+/* Shared parallax item styles */
 .parallax-item {
     	position: absolute;
     	top: 50%;
@@ -21,12 +21,12 @@
     	transition: transform 0.1s ease-out;
 }
 /*
-子容器定义:
-	  共七层子元素分别对应:背景\备用层\阴影\主要层\备用层\备用层\上方元素层\
-      目前第二层用于粒子动画,向鼠标移动方向反向移动
-	  第六层处于第4层下方，使立绘突出
-	
-	  ！所有元素按照屏幕宽度计算百分比大小！important
+Layer notes:
+	Seven child layers in order: background / fallback / shadow / main / fallback / fallback / upper elements.
+	The second layer is currently used for particle animation and moves opposite the mouse direction.
+	The sixth layer sits below the fourth layer so the character art stands out.
+
+	Important: all element sizes are calculated as percentages of the viewport width.
 */
 .parallax-item:nth-child(1) {
     	background-image: none;
@@ -50,7 +50,7 @@
     	transform: translate(calc(var(--relative-x) * 0.5% - 50%), calc(var(--relative-y) * 0.5% - 50%));
 }
 
-/*通用上方元素容器(附带模糊滤镜)*/
+/* Shared upper element container with blur filter */
 .general-upper-container{
 	position: absolute;
 	backdrop-filter: blur(5px);
@@ -62,7 +62,7 @@
 	justify-content: center;
 }
 
-/*翻页框架*/
+/* Section transition frame */
 .section {
             position: absolute;
             top: 0;
@@ -172,12 +172,14 @@
 	width: 17vh;
 	align-content: center;
 	font-size: 3vh;
-	border: 1px solid #fff;
-	color: white;
 	opacity: 0;
 	transition: 0.5s ease;
+	background-image: url(images/foa-logo.png);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
-/*开屏粒子动画*/
+/* Opening particle animation */
 #scifi-canvas{
 	opacity: 0.8;
 	position: fixed;
@@ -233,7 +235,7 @@
 }
 
 
-/*滚动提示行为*/
+/* Scroll indicator animation */
 @keyframes blink {
             0% {
                 opacity: 0;
