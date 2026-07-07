@@ -16,6 +16,7 @@ const NPCPFP = document.getElementById('CprofilePicture');
 
 const PILayer = document.querySelectorAll('.GterritoryContainer');
 const CVSL = document.getElementById('conversationLayer');
+const CONVAI_SESSION_STORAGE_KEY = 'foa-convai-session-ids';
 
 const NPCS = {
 	UPPER_NUOVARTICA: {
@@ -55,6 +56,33 @@ function applyConversationAssets(assetPath){
 	NPCPFP.style.backgroundImage = `url('${assetPath}/CharacterFrame.png')`;
 }
 
+function getConversationSessions(){
+	try {
+		return JSON.parse(localStorage.getItem(CONVAI_SESSION_STORAGE_KEY) || '{}');
+	} catch (error) {
+		return {};
+	}
+}
+
+function getConversationSessionId(npcKey){
+	const sessions = getConversationSessions();
+	return typeof sessions[npcKey] === 'string' && sessions[npcKey].trim() ? sessions[npcKey] : '-1';
+}
+
+function setConversationSessionId(npcKey, sessionID){
+	if (typeof sessionID !== 'string' || !sessionID.trim()) {
+		return;
+	}
+
+	try {
+		const sessions = getConversationSessions();
+		sessions[npcKey] = sessionID.trim();
+		localStorage.setItem(CONVAI_SESSION_STORAGE_KEY, JSON.stringify(sessions));
+	} catch (error) {
+		return;
+	}
+}
+
 function removeMessageLoader(){
 	const loader = document.getElementById('messageLoader');
 	if(loader){
@@ -79,7 +107,8 @@ async function sendMessage(message, npcKey, CharName) {
 			},
 			body: JSON.stringify({
 				npc: npcKey,
-				message
+				message,
+				sessionID: getConversationSessionId(npcKey)
 			})
 		});
 
@@ -88,6 +117,8 @@ async function sendMessage(message, npcKey, CharName) {
 		if (!response.ok) {
 			throw new Error(data.error || `HTTP ERROR EC:${response.status}`);
 		}
+
+		setConversationSessionId(npcKey, data.sessionID);
 
 		removeMessageLoader();
 		addMessage(CharName, data.text);
