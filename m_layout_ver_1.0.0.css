@@ -51,10 +51,12 @@
 	width: 17vh;
 	align-content: center;
 	font-size: 3vh;
-	border: 1px solid #fff;
-	color: white;
 	opacity: 0;
 	transition: 0.5s ease;
+	background-image: url(images/foa-logo.png);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 #bkgfilter{
