@@ -4,7 +4,7 @@ const NPC_CONFIG = {
 		characterId: 'c8b71aa2-d42c-11ed-be15-42010a7c4003'
 	},
 	MIRROR_CITY: {
-		characterId: 'cd247790-6520-11ed-8b0b-42010a80000c'
+		characterId: 'f6b51484-71d6-11ee-9277-42010a40000e'
 	},
 	LOWER_NUOVARTICA: {
 		characterId: '38e6efc6-676f-11ed-8762-42010a80000c'
