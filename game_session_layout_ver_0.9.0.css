@@ -259,3 +259,135 @@
 	bottom: 0.5%;
 	color: #aaa;
 }
+
+
+@media (max-aspect-ratio: 1.15/1){
+	#st-play{
+		position: relative;
+		min-height: 100vh;
+		height: auto;
+		overflow: hidden;
+	}
+
+	#mobileGameMap{
+		display: flex;
+		flex-direction: column;
+		gap: 2.2vh;
+		width: calc(100% - 12vw);
+		margin: 6vh 6vw 0;
+	}
+
+	.GterritoryContainer{
+		left: auto !important;
+		top: auto !important;
+		transform: none !important;
+		width: 100%;
+		height: 8vh;
+		aspect-ratio: auto;
+	}
+
+	.GterritoryName{
+		font-size: 6vw;
+		padding-left: 5vw;
+	}
+
+	.GterritoryCirc{
+		height: 3vw;
+		width: 3vw;
+	}
+
+	#conversationLayer{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 100vw;
+		z-index: 200000;
+		flex-direction: column;
+		border-top: 1px #fff solid;
+		border-bottom: 1px #fff solid;
+	}
+
+	#conversationLayer::after{
+		background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.7) 58%, rgba(0,0,0,0.9) 100%);
+	}
+
+	#CprofileContainer{
+		position: absolute;
+		top: 3%;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 30%;
+		width: 82%;
+	}
+
+	#CprofilePicture{
+		top: 0;
+		left: 0;
+		width: 40%;
+		height: 100%;
+	}
+
+	#CprofileName{
+		left: 43%;
+		top: 27%;
+		bottom: auto;
+		height: 5.6vh;
+		width: 57%;
+		font-size: 7vw;
+		line-height: 1;
+	}
+
+	#CprofileLoc{
+		left: 43%;
+		top: 62%;
+		bottom: auto;
+		height: 3.2vh;
+		width: 57%;
+		font-size: 4vw;
+		line-height: 1;
+	}
+
+	#conversationHistory{
+		top: 36%;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 39%;
+		width: 82%;
+		font-size: 4.5vw;
+		padding: 0 2vw;
+	}
+
+	#conversationInput{
+		top: auto;
+		bottom: 5%;
+		left: 6vw;
+		transform: none;
+		height: 6vh;
+		width: 62vw;
+		font-size: 4.5vw;
+	}
+
+	#CsendBtn{
+		top: auto;
+		bottom: 5%;
+		left: auto;
+		right: 5vw;
+		transform: none;
+		height: 6vh;
+		width: 22vw;
+		margin: 0;
+		font-size: 5vw;
+	}
+
+	#CbackBtn{
+		top: 2%;
+		left: auto;
+		right: 4vw;
+		height: 4vh;
+		width: auto;
+		margin: 0;
+		font-size: 4.2vw;
+		padding: 0 3vw;
+		z-index: 1;
+	}
+}
