@@ -51,10 +51,8 @@ const NPCS = {
 	}
 };
 
-function applyConversationAssets(assetPath){
-	CVSL.style.setProperty('--conversation-background-image', `url('${assetPath}/background.png')`);
-	NPCPFP.style.backgroundImage = `url('${assetPath}/CharacterFrame.png')`;
-}
+const conversationMessages = {};
+const NPC_OPENING_MESSAGE = "Hello, welcome. What would you like to chat about?";
 
 function getConversationSessions(){
 	try {
@@ -83,6 +81,19 @@ function setConversationSessionId(npcKey, sessionID){
 	}
 }
 
+function getConversationMessages(npcKey){
+	if(!conversationMessages[npcKey]){
+		conversationMessages[npcKey] = [];
+	}
+
+	return conversationMessages[npcKey];
+}
+
+function applyConversationAssets(assetPath){
+	CVSL.style.setProperty('--conversation-background-image', `url('${assetPath}/background.png')`);
+	NPCPFP.style.backgroundImage = `url('${assetPath}/CharacterFrame.png')`;
+}
+
 function removeMessageLoader(){
 	const loader = document.getElementById('messageLoader');
 	if(loader){
@@ -107,8 +118,8 @@ async function sendMessage(message, npcKey, CharName) {
 			},
 			body: JSON.stringify({
 				npc: npcKey,
-				message,
-				sessionID: getConversationSessionId(npcKey)
+				sessionID: getConversationSessionId(npcKey),
+				message
 			})
 		});
 
@@ -121,15 +132,15 @@ async function sendMessage(message, npcKey, CharName) {
 		setConversationSessionId(npcKey, data.sessionID);
 
 		removeMessageLoader();
-		addMessage(CharName, data.text);
+		addMessage(CharName, data.text, npcKey);
 	} catch (error) {
 		console.error('REQUEST FAIL:', error);
 		removeMessageLoader();
-		addMessage('SYSTEM', 'REQUEST FAILURE. CHECK CONSOLE.');
+		addMessage('SYSTEM', 'REQUEST FAILURE. CHECK CONSOLE.', npcKey);
 	}
 }
 
-function addMessage(sender, message) {
+function appendMessageToHistory(sender, message) {
 	const messagesList = document.getElementById("conversationHistory");
 	const newMessage = document.createElement("p");
 	const senderLabel = document.createElement("span");
@@ -153,6 +164,25 @@ function addMessage(sender, message) {
 	messagesList.appendChild(newMessage);
 	messagesList.scrollTop = messagesList.scrollHeight;
 }
+
+function renderConversationHistory(npcKey){
+	const messagesList = document.getElementById("conversationHistory");
+	messagesList.innerHTML = "";
+	getConversationMessages(npcKey).forEach(({ sender, message }) => {
+		appendMessageToHistory(sender, message);
+	});
+}
+
+function addMessage(sender, message, npcKey = currentNpc) {
+	if(!npcKey){
+		return;
+	}
+
+	getConversationMessages(npcKey).push({ sender, message });
+	if(currentNpc === npcKey){
+		appendMessageToHistory(sender, message);
+	}
+}
 let currentNpc = null;
 
 function openConversation(npcKey){
@@ -175,7 +205,11 @@ function openConversation(npcKey){
 	slideIn(npc.name, NPCName, 500);
 	slideIn(npc.region, NPCRegion, 500);
 	currentNpc = npcKey;
-	if(!navControlVariable.classList.contains('.mainNavHidden')){
+	if (getConversationMessages(npcKey).length === 0) {
+		addMessage(npc.name, NPC_OPENING_MESSAGE, npcKey);
+	}
+	renderConversationHistory(npcKey);
+	if(navControlVariable && !navControlVariable.classList.contains('mainNavHidden')){
 		navControlVariable.classList.add('mainNavHidden');
 	}
 }
@@ -188,7 +222,7 @@ CCloseBtn.addEventListener('click',()=>{
 	isAnimating = false;
 	CVSL.style.opacity = 0;
 	CVSL.style.height = '0.1vh';
-	setTimeout(function(){CVSL.style.display = 'HTMLUnknownElement';},300);
+	setTimeout(function(){CVSL.style.display = 'none';},300);
 	CSendBtn.removeEventListener('click',()=>{});
 	currentNpc = null;
 	NPCPFP.style.backgroundImage = "url('images/defaultPFP.webp')";
