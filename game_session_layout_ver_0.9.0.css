@@ -1,261 +1,253 @@
-@charset "utf-8";
-/* CSS Document */
+const UNBtn = document.getElementById('GT-UN');
+const MCBtn = document.getElementById('GT-MC');
+const LNBtn = document.getElementById('GT-LN');
+const FTBtn = document.getElementById('GT-FT');
+const FBBtn = document.getElementById('GT-FB');
+const CGBtn = document.getElementById('GT-CG');
 
-.GterritoryContainer{
-	position: relative;
-	height: 7vh;
-	aspect-ratio: 5;
-	width: auto;
-	border-left: 1px #fff solid;
-	transition: 0.3s ease;
-}
+const navControlVariable = document.getElementById('navBar');
 
-.GterritoryBkg{
-	position: absolute;
-	left: 0%;
-	top: 0%;
-	width: 100%;
-	height: 100%;
-	clip-path: inset(0 100% 0 0);
-	transition: 0.5s ease-in-out;
-	color: #fff;
-	background-color: #36d;
-	font-size: 4.7vh;
-	text-align: left;
-	padding-left: 2vh;
-}
+const CCloseBtn = document.getElementById('CbackBtn');
+const CSendBtn = document.getElementById('CsendBtn');
 
-.GterritoryName{
-	position: absolute;
-	left: 0%;
-	top: 0%;
-	width: 100%;
-	height: 100%;
-	color: #ddd;
-	font-size: 4.7vh;
-	text-align: left;
-	align-content: center;
-	padding-left: 2vh;
-	cursor: pointer;
-	transition: 0.2s ease;
-}
-.GterritoryName:hover{
-	background-color: rgba(38,47,212,0.77);
-}
+const NPCName = document.getElementById('CprofileName');
+const NPCRegion = document.getElementById('CprofileLoc');
+const NPCPFP = document.getElementById('CprofilePicture');
 
-.GterritoryCirc{
-	position: absolute;
-	left: 0%;
-	bottom: 0%;
-	border-radius: 2vh;
-	height: 2vh;
-	width: 2vh;
-	border: 2px #fff solid;
-	background-color: rgba(24,53,184,0.70);
-	transform: translate(-50%, 50%);
-}
+const PILayer = document.querySelectorAll('.GterritoryContainer');
+const CVSL = document.getElementById('conversationLayer');
+const CONVAI_SESSION_STORAGE_KEY = 'foa-convai-session-ids';
 
-#GT-UN{
-	left: 50vw;
-	top: 50vh;
-	transform: translate(-50%,-410%);
-}
-#GT-MC{
-	left: 50vw;
-	top: 50vh;
-	transform: translate(75%,-295%);
-}
-#GT-LN{
-	left: 50vw;
-	top: 50vh;
-	transform: translate(-50%,-240%);
-}
-#GT-FT{
-	left: 50vw;
-	top: 50vh;
-	transform: translate(120%,-40%);
-}
-#GT-FB{
-	left: 50vw;
-	top: 50vh;
-	transform: translate(-150%,-220%);
-}
-#GT-CG{
-	left: 50vw;
-	top: 50vh;
-	transform: translate(70%,50%);
+const NPCS = {
+	UPPER_NUOVARTICA: {
+		region: 'UPPER NUOVARTICA',
+		name: 'Ymir',
+		assetPath: 'assets/UpperNuovartica'
+	},
+	MIRROR_CITY: {
+		region: 'MIRROR CITY',
+		name: 'Otto',
+		assetPath: 'assets/MirrorCity'
+	},
+	LOWER_NUOVARTICA: {
+		region: 'LOWER NUOVARTICA',
+		name: 'Li',
+		assetPath: 'assets/LowerNuovartica'
+	},
+	FORTRESS: {
+		region: 'FORTRESS',
+		name: 'Bdair',
+		assetPath: 'assets/Fortress'
+	},
+	FON_BAY: {
+		region: 'FON BAY',
+		name: 'Eren',
+		assetPath: 'assets/FonBay'
+	},
+	CRESCENT_GARDEN: {
+		region: 'CRESCENT GARDEN',
+		name: 'Lineus',
+		assetPath: 'assets/CrescentGarden'
+	}
+};
+
+const conversationMessages = {};
+const NPC_OPENING_MESSAGE = "Hello, welcome. What would you like to chat about?";
+
+function getConversationSessions(){
+	try {
+		return JSON.parse(localStorage.getItem(CONVAI_SESSION_STORAGE_KEY) || '{}');
+	} catch (error) {
+		return {};
+	}
 }
 
-#randomCodeCanvas{
-	width: 100%;
-	height: 100%;
+function getConversationSessionId(npcKey){
+	const sessions = getConversationSessions();
+	return typeof sessions[npcKey] === 'string' && sessions[npcKey].trim() ? sessions[npcKey] : '-1';
 }
 
-#conversationLayer{
-	position: absolute;
-	top: 50vh;
-	left: 50vw;
-	transform: translate(-50%,-50%);
-	display: none;
-	width: 100vw;
-	height: 0.1vh; /*80*/
-	border-top: 1px #fff solid;
-	border-bottom: 1px #fff solid;
-	opacity: 0;
-	transition: 0.5s ease-in-out;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	background-color: rgba(0,0,0,0.2);
-	--conversation-background-image: none;
-	overflow: hidden;
-	
+function setConversationSessionId(npcKey, sessionID){
+	if (typeof sessionID !== 'string' || !sessionID.trim()) {
+		return;
+	}
+
+	try {
+		const sessions = getConversationSessions();
+		sessions[npcKey] = sessionID.trim();
+		localStorage.setItem(CONVAI_SESSION_STORAGE_KEY, JSON.stringify(sessions));
+	} catch (error) {
+		return;
+	}
 }
 
-#conversationLayer::before{
-	content: "";
-	position: absolute;
-	inset: 0;
-	background-image: var(--conversation-background-image);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	opacity: 0.22;
-	pointer-events: none;
-	z-index: -1;
+function getConversationMessages(npcKey){
+	if(!conversationMessages[npcKey]){
+		conversationMessages[npcKey] = [];
+	}
+
+	return conversationMessages[npcKey];
 }
 
-#conversationLayer::after{
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(90deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.46) 48%, rgba(0,0,0,0.68) 100%);
-	pointer-events: none;
-	z-index: -1;
+function applyConversationAssets(assetPath){
+	CVSL.style.setProperty('--conversation-background-image', `url('${assetPath}/background.png')`);
+	NPCPFP.style.backgroundImage = `url('${assetPath}/CharacterFrame.png')`;
 }
 
-#CbackBtn{
-	position: absolute;
-	top: 10%;
-	left: 5%;
-	height: 5vh;
-	width: 7vh;
-	font-size: 3.7vh;
-	color: #ddd;
-	margin: 3vh;
-	background-color: rgba(0,0,0,0);
-	cursor: pointer;
-	transition: 0.2s ease-in-out;
-	border-left: 1px solid #fff;
-	text-align: center;
-	padding-right: 3vh;
-	align-content: center;
-	justify-content: center;
-	padding-left: 3vh;
-	display: flex;
-}
-#CbackBtn:hover{
-	color: black;
-	background-color: rgba(225,225,225,1);
+function removeMessageLoader(){
+	const loader = document.getElementById('messageLoader');
+	if(loader){
+		loader.remove();
+	}
 }
 
-#conversationInput{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-20%, 410%);
-	height: 7%;
-	width: 50%;
-	border-style: none;
-	border-radius: 0px;
-	border-top: 1px #fff solid;
-	border-bottom: 1px #fff solid;
-	color: #fff;
-	font-size: 2.8vh;
-	background-color: rgba(0,0,0,0);
+async function sendMessage(message, npcKey, CharName) {
+	try {
+		const tempLine = document.createElement('span');
+		tempLine.style.color = '#777';
+		tempLine.appendChild(document.createTextNode("Message Successfully Sent."));
+		tempLine.appendChild(document.createElement("br"));
+		tempLine.appendChild(document.createTextNode(`Receiving transmission from ${CharName}...`));
+		tempLine.id = 'messageLoader';
+		document.getElementById('conversationHistory').appendChild(tempLine);
+
+		const response = await fetch('/api/chat', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				npc: npcKey,
+				sessionID: getConversationSessionId(npcKey),
+				message
+			})
+		});
+
+		const data = await response.json().catch(() => ({}));
+
+		if (!response.ok) {
+			throw new Error(data.error || `HTTP ERROR EC:${response.status}`);
+		}
+
+		setConversationSessionId(npcKey, data.sessionID);
+
+		removeMessageLoader();
+		addMessage(CharName, data.text, npcKey);
+	} catch (error) {
+		console.error('REQUEST FAIL:', error);
+		removeMessageLoader();
+		addMessage('SYSTEM', 'REQUEST FAILURE. CHECK CONSOLE.', npcKey);
+	}
 }
 
-#CsendBtn{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(352%, 620%);
-	height: 6%;
-	width: 14vh;
-	font-size: 3.7vh;
-	color: #ddd;
-	margin: 3vh;
-	background-color: rgba(0,0,0,0);
-	cursor: pointer;
-	transition: 0.2s ease-in-out;
-	border-right: 1px solid #fff;
-	border-left: 1px solid #fff;
-	text-align: center;
-	align-content: center;
-}
-#CsendBtn:hover{
-	color: #36d;
-	background-color: rgba(225,225,225,1);
-}
-#CsendBtn:active{
-	color: black;
-	background-color: rgba(225,225,225,1);
+function appendMessageToHistory(sender, message) {
+	const messagesList = document.getElementById("conversationHistory");
+	const newMessage = document.createElement("p");
+	const senderLabel = document.createElement("span");
+	const messageText = document.createElement("span");
+
+	senderLabel.textContent = `${sender}:`;
+	messageText.textContent = String(message ?? "");
+
+	if(sender === "YOU"){
+		newMessage.style.textAlign = "right";
+		senderLabel.style.color = "#fff";
+		messageText.style.color = "#aaa";
+	}else{
+		senderLabel.style.color = "#acf";
+		messageText.style.color = "#ddd";
+	}
+
+	newMessage.appendChild(senderLabel);
+	newMessage.appendChild(document.createTextNode(" "));
+	newMessage.appendChild(messageText);
+	messagesList.appendChild(newMessage);
+	messagesList.scrollTop = messagesList.scrollHeight;
 }
 
-#conversationHistory{
-	position: absolute;
-	padding-left: 3vh;
-	top: 50%;
-	left: 50%;
-	transform: translate(-23%, -58%);
-	height: 70%;
-	width: 50%;
-	/*border-left: 1px #fff solid;*/
-	font-family: 'Smiley Sans Oblique';
-	color: aliceblue;
-	font-size: 2.8vh;
-	transition: 0.2s ease;
-	overflow-y: auto;
-	padding-right: 2vh;
-}
-#conversationHistory::-webkit-scrollbar-track{
-	background-color: rgba(0,0,0,0);
+function renderConversationHistory(npcKey){
+	const messagesList = document.getElementById("conversationHistory");
+	messagesList.innerHTML = "";
+	getConversationMessages(npcKey).forEach(({ sender, message }) => {
+		appendMessageToHistory(sender, message);
+	});
 }
 
-#CprofileContainer{
-	position: relative;
-	height: 75%;
-	width: 30%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-140%, -50%);
+function addMessage(sender, message, npcKey = currentNpc) {
+	if(!npcKey){
+		return;
+	}
+
+	getConversationMessages(npcKey).push({ sender, message });
+	if(currentNpc === npcKey){
+		appendMessageToHistory(sender, message);
+	}
+}
+let currentNpc = null;
+
+function openConversation(npcKey){
+	const npc = NPCS[npcKey];
+	if(!npc){
+		return;
+	}
+
+	PILayer.forEach(button =>{
+		button.style.opacity = 0;
+	});
+	CVSL.style.display = 'flex';
+	setTimeout(function(){
+		CVSL.style.opacity = 1;
+		CVSL.style.height = '80vh';
+	},10);
+	navControl = 1;
+	isAnimating = true;
+	applyConversationAssets(npc.assetPath);
+	slideIn(npc.name, NPCName, 500);
+	slideIn(npc.region, NPCRegion, 500);
+	currentNpc = npcKey;
+	if (getConversationMessages(npcKey).length === 0) {
+		addMessage(npc.name, NPC_OPENING_MESSAGE, npcKey);
+	}
+	renderConversationHistory(npcKey);
+	if(navControlVariable && !navControlVariable.classList.contains('mainNavHidden')){
+		navControlVariable.classList.add('mainNavHidden');
+	}
 }
 
-#CprofilePicture{
-	position: absolute;
-	top: 10%;
-	left: 10%;
-	width: 80%;
-	height: 80%;
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-image: url('images/defaultPFP.webp');
-}
+CCloseBtn.addEventListener('click',()=>{
+	PILayer.forEach(button =>{
+		button.style.opacity = 1;
+	});
+	navControl = 0;
+	isAnimating = false;
+	CVSL.style.opacity = 0;
+	CVSL.style.height = '0.1vh';
+	setTimeout(function(){CVSL.style.display = 'none';},300);
+	CSendBtn.removeEventListener('click',()=>{});
+	currentNpc = null;
+	NPCPFP.style.backgroundImage = "url('images/defaultPFP.webp')";
+	CVSL.style.setProperty('--conversation-background-image', 'none');
+});
 
-#CprofileName{
-	height: 7vh;
-	width:100%;
-	position: absolute;
-	left: 0%;
-	bottom: 6.5%;
-	color: #fff;
-}
+UNBtn.addEventListener('click',()=> openConversation('UPPER_NUOVARTICA'));
+MCBtn.addEventListener('click',()=> openConversation('MIRROR_CITY'));
+LNBtn.addEventListener('click',()=> openConversation('LOWER_NUOVARTICA'));
+FTBtn.addEventListener('click',()=> openConversation('FORTRESS'));
+FBBtn.addEventListener('click',()=> openConversation('FON_BAY'));
+CGBtn.addEventListener('click',()=> openConversation('CRESCENT_GARDEN'));
 
-#CprofileLoc{
-	height: 3.2vh;
-	width:100%;
-	position: absolute;
-	left: 0%;
-	bottom: 0.5%;
-	color: #aaa;
-}
+CSendBtn.addEventListener('click', () => {
+	const input = document.getElementById('conversationInput');
+	const message = input.value.trim();
+	if (message && currentNpc) {
+		addMessage('YOU', message);
+		sendMessage(message, currentNpc, NPCS[currentNpc].name);
+		input.value = '';
+	}
+});
+
+document.getElementById('conversationInput').addEventListener('keypress', (event) => {
+	if (event.key === 'Enter') {
+		CSendBtn.click();
+	}
+});
