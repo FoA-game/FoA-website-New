@@ -50,6 +50,8 @@ const NPCS = {
 	}
 };
 
+const NPC_OPENING_MESSAGE = "Hello, welcome. What would you like to chat about?";
+
 function applyConversationAssets(assetPath){
 	CVSL.style.setProperty('--conversation-background-image', `url('${assetPath}/background.png')`);
 	NPCPFP.style.backgroundImage = `url('${assetPath}/CharacterFrame.png')`;
@@ -164,6 +166,11 @@ function openConversation(npcKey){
 	currentNpc = npcKey;
 	removeMessageLoader();
 	clearConversationHistory();
+	requestAnimationFrame(() => {
+		if(isActiveConversation(npcKey, activeConversationId)){
+			addMessage(npc.name, NPC_OPENING_MESSAGE);
+		}
+	});
 	if(navControlVariable && !navControlVariable.classList.contains('mainNavHidden')){
 		navControlVariable.classList.add('mainNavHidden');
 	}
