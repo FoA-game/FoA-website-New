@@ -63,6 +63,7 @@ function removeMessageLoader(npcKey){
 }
 
 async function sendMessage(message, npcKey, CharName) {
+	const conversationId = activeConversationId;
 	try {
 		const tempLine = document.createElement('span');
 		tempLine.style.color = '#777';
@@ -71,7 +72,7 @@ async function sendMessage(message, npcKey, CharName) {
 		tempLine.appendChild(document.createTextNode(`Receiving transmission from ${CharName}...`));
 		tempLine.id = 'messageLoader';
 		tempLine.dataset.npc = npcKey;
-		if(currentNpc === npcKey){
+		if(isActiveConversation(npcKey, conversationId)){
 			document.getElementById('conversationHistory').appendChild(tempLine);
 		}
 
@@ -93,13 +94,13 @@ async function sendMessage(message, npcKey, CharName) {
 		}
 
 		removeMessageLoader(npcKey);
-		if(currentNpc === npcKey){
+		if(isActiveConversation(npcKey, conversationId)){
 			addMessage(CharName, data.text);
 		}
 	} catch (error) {
 		console.error('REQUEST FAIL:', error);
 		removeMessageLoader(npcKey);
-		if(currentNpc === npcKey){
+		if(isActiveConversation(npcKey, conversationId)){
 			addMessage('SYSTEM', 'REQUEST FAILURE. CHECK CONSOLE.');
 		}
 	}
@@ -130,6 +131,15 @@ function addMessage(sender, message) {
 	messagesList.scrollTop = messagesList.scrollHeight;
 }
 let currentNpc = null;
+let activeConversationId = 0;
+
+function clearConversationHistory(){
+	document.getElementById("conversationHistory").replaceChildren();
+}
+
+function isActiveConversation(npcKey, conversationId){
+	return currentNpc === npcKey && activeConversationId === conversationId;
+}
 
 function openConversation(npcKey){
 	const npc = NPCS[npcKey];
@@ -150,9 +160,10 @@ function openConversation(npcKey){
 	applyConversationAssets(npc.assetPath);
 	slideIn(npc.name, NPCName, 500);
 	slideIn(npc.region, NPCRegion, 500);
+	activeConversationId++;
 	currentNpc = npcKey;
 	removeMessageLoader();
-	document.getElementById("conversationHistory").innerHTML = "";
+	clearConversationHistory();
 	if(navControlVariable && !navControlVariable.classList.contains('mainNavHidden')){
 		navControlVariable.classList.add('mainNavHidden');
 	}
@@ -168,8 +179,9 @@ CCloseBtn.addEventListener('click',()=>{
 	CVSL.style.height = '0.1vh';
 	setTimeout(function(){CVSL.style.display = 'none';},300);
 	CSendBtn.removeEventListener('click',()=>{});
+	activeConversationId++;
 	currentNpc = null;
-	document.getElementById("conversationHistory").innerHTML = "";
+	clearConversationHistory();
 	NPCPFP.style.backgroundImage = "url('images/defaultPFP.webp')";
 	CVSL.style.setProperty('--conversation-background-image', 'none');
 });
