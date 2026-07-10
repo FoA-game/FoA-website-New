@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="preload" href="m_layout_ver_1.0.0.css" as="style">
+	<link rel="preload" href="m_layout_ver_1.0.0.css?v=mobile-menu-layout-6" as="style">
+	<link rel="preload" href="game_session_layout_ver_0.9.0.css?v=mobile-npc-2" as="style">
 	
 <title>FOA OFFICIAL WEBSITE</title>
-	<link rel="stylesheet" href="m_layout_ver_1.0.0.css">
+	<link rel="stylesheet" href="m_layout_ver_1.0.0.css?v=mobile-menu-layout-6">
+	<link rel="stylesheet" href="game_session_layout_ver_0.9.0.css?v=mobile-npc-2">
 	<style>
 		@font-face {
 			font-family: 'Smiley Sans Oblique';
@@ -80,15 +82,15 @@
 	</div>
 	
 	<div id="st0" class="container" style="border-top: none; z-index: 1000;">
-		<div id="logoContainer">logo placeholder</div>
+		<div id="logoContainer" aria-label="FOA logo"></div>
 		<div id="mainTitleContainer"></div>
 		<div id="homeMenuContainer">
 				<div class="homeMenuOption">
 					PLAY THE GAME<br><br>
-					<a id="eventBtn">Current Events</a><br><br>
+					<a id="eventBtn" href="#current-events">Current Events</a><br><br>
+					<a id="mobileHomeNpcBtn" href="#play">Play</a><br><br>
 					<a id="signUpBtn">Sign up for mailing list</a>
 				</div>
-				<div class="homeMenuOption"><br><br><br></div>
 				<div class="homeMenuOption">
 					GET THE BOX<br><br>
 					<a>Purchase</a><br><br>
@@ -101,7 +103,16 @@
 	
 	<div id="st1" class="container" style="z-index: 1000;">
 		<!--Events-->
-		<h1>Current Events</h1>
+		<h1 id="current-events">Current Events</h1>
+			<div class="eventContent">
+				<h2>Upcoming Event: The 1st Annual KMA Exhibition</h2>
+				<p>Join us for the 1st Annual Knowledge Media Arts (KMA) Exhibition, showcasing creative works and projects in Knowledge Media Arts.</p>
+				<p><strong>📅 Date:</strong> July 19–29, 2026</p>
+				<p><strong>📍 Venue:</strong> Dupont Rail Gallery<br>Address: 1444 Dupont St., Unit 106, Toronto</p>
+				<p>The exhibition is curated by Ailin Dong and Kathy H. Zhou.</p>
+				<p>Please note: Attendance is by RSVP only.</p>
+				<p>Reserve your spot here:<br><a href="https://www.eventbrite.ca/e/1st-kma-exhibition-opening-reception-tickets-1993171225791" target="_blank" rel="noopener noreferrer">https://www.eventbrite.ca/e/1st-kma-exhibition-opening-reception-tickets-1993171225791</a></p>
+			</div>
 	</div>
 	
 	<div id="st2" class="container" style="height: 80vh; display: flex; flex-direction: column; justify-content:flex-start; z-index: 1001; overflow: auto;">
@@ -131,34 +142,56 @@
 		</div>
 		<!--Introduction-->
 	</div>
+	<div id="st-play" class="container" style="z-index: 1002;">
+		<h1 id="play">Play</h1>
+		<div id="mobileGameMap">
+			<div id="GT-UN" class="GterritoryContainer"><div class="GterritoryCirc"></div><div class="GterritoryName">UPPER NUOVARTICA</div></div>
+			<div id="GT-MC" class="GterritoryContainer"><div class="GterritoryCirc"></div><div class="GterritoryName">MIRROR CITY</div></div>
+			<div id="GT-LN" class="GterritoryContainer"><div class="GterritoryCirc"></div><div class="GterritoryName">LOWER NUOVARTICA</div></div>
+			<div id="GT-FT" class="GterritoryContainer"><div class="GterritoryCirc"></div><div class="GterritoryName">FORTRESS</div></div>
+			<div id="GT-FB" class="GterritoryContainer"><div class="GterritoryCirc"></div><div class="GterritoryName">FON BAY</div></div>
+			<div id="GT-CG" class="GterritoryContainer"><div class="GterritoryCirc"></div><div class="GterritoryName">CRESCENT GARDEN</div></div>
+		</div>
+		<div id="conversationLayer">
+			<div id="CprofileContainer">
+				<div id="CprofilePicture"></div>
+				<div id="CprofileName"></div>
+				<div id="CprofileLoc"></div>
+			</div>
+			<div id="conversationHistory"></div>
+			<input id="conversationInput"></input>
+			<div id="CsendBtn">SEND</div>
+			<div id="CbackBtn">CLOSE</div>
+		</div>
+	</div>
 	
-	<div id="st3" class="container" style="z-index: 1002; display: flex; flex-direction: column; justify-content:space-between; ">
+	<div id="st3" class="container" style="z-index: 1003; display: flex; flex-direction: column; justify-content:space-between; ">
 		<!--Communication-->
 		<div class="intro-section">
 			<h1>Player</h1>
-			Every world begins with players. Creative minds. Bold choices. Shared stories.
+			Every world begins with players. Creative minds. Bold choices. Shared stories.<br><a href="https://discord.gg/Wz3ebPytT" target="_blank" rel="noopener noreferrer">Join Discord</a>
 		</div>
 		<div class="intro-section">
 			<h1>Facilitator</h1>
-			World-builders and guides. Creating the conditions for exploration, connection, and discovery.
+			World-builders and guides. Creating the conditions for exploration, connection, and discovery.<br><a href="https://drive.google.com/file/d/1mkDzB9FpnT3Pejta-Xd43kR0506XKWQF/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Printable Version</a>
 		</div>
 		<div class="intro-section">
 			<h1>Contributor</h1>
-			An evolving open world shaped by students, artists, educators, coders, researchers, and curious builders across the globe.
+			An evolving open world shaped by students, artists, educators, coders, researchers, and curious builders across the globe.<br><a href="https://artivition-projects-7a27da.webflow.io/" target="_blank" rel="noopener noreferrer">Contributor Portal</a>
 		</div>
 		
 	</div>
 	
-	<div id="st4" class="container" style="z-index: 1003;">
+	<div id="st4" class="container" style="z-index: 1004;">
 		<!--Resources-->
 		<div class="intro-section">
 			<h1>Research</h1>
-			<a>https://scholar.google.ca/citations?user=JuwMw-EAAAAJ&hl=en&oi=sra</a>
+			<a href="https://scholar.google.ca/citations?user=JuwMw-EAAAAJ&hl=en&oi=sra" target="_blank" rel="noopener noreferrer">https://scholar.google.ca/citations?user=JuwMw-EAAAAJ&hl=en&oi=sra</a>
 		</div>
 		<div class="intro-section">
 			<h1>Resources</h1>
 			NPC Links<br>
-			<a id="mobileNpcLinksBtn" href="#play">Talk to NPCs in Play</a><br>
+			<a id="mobileNpcLinksBtn" href="#play">Play</a><br>
 			<a href="https://drive.google.com/file/d/1mkDzB9FpnT3Pejta-Xd43kR0506XKWQF/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Printable Recourses</a>
 		</div>
 		
@@ -179,8 +212,9 @@
 		<div id="nb0" class="linkBtn">✧Home</div>
 		<div id="nb1" class="linkBtn">✧Current Events</div>
 		<div id="nb2" class="linkBtn">✧Introduction</div>
-		<div id="nb3" class="linkBtn">✧Communication</div>
-		<div id="nb4" class="linkBtn">✧Resources</div>
+		<div id="nb3" class="linkBtn">✧Play</div>
+		<div id="nb4" class="linkBtn">✧Communication</div>
+		<div id="nb5" class="linkBtn">✧Resources</div>
 		
 		
 	</div>
@@ -248,10 +282,12 @@
 	const nv2=document.getElementById('nb2');
 	const nv3=document.getElementById('nb3');
 	const nv4=document.getElementById('nb4');
+	const nv5=document.getElementById('nb5');
 		
 	const sc0=document.getElementById('st0');
 	const sc1=document.getElementById('st1');
 	const sc2=document.getElementById('st2');
+	const scPlay=document.getElementById('st-play');
 	const sc3=document.getElementById('st3');
 	const sc4=document.getElementById('st4');
 		
@@ -268,10 +304,14 @@
 		document.getElementById('navCurtain').click();
 	});
 	nv3.addEventListener('click', ()=>{
-		sc3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		scPlay.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		document.getElementById('navCurtain').click();
 	});
 	nv4.addEventListener('click', ()=>{
+		sc3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById('navCurtain').click();
+	});
+	nv5.addEventListener('click', ()=>{
 		sc4.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		document.getElementById('navCurtain').click();
 	});
@@ -282,10 +322,16 @@
 		sc4.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	});
 
+	document.getElementById('mobileHomeNpcBtn').addEventListener('click', (event)=>{
+		event.preventDefault();
+		scPlay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	});
+
 	document.getElementById('mobileNpcLinksBtn').addEventListener('click', (event)=>{
 		event.preventDefault();
-		sc2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		scPlay.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	});
 	</script>
+	<script src="scripts/game_main_ver_0.9.4.js?v=npc-opening-2"></script>
 </body>
 </html>
