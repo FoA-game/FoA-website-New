@@ -301,7 +301,7 @@
 		inset: 0;
 		top: 0;
 		left: 0;
-		transform: none;
+		transform: none !important;
 		width: 100vw;
 		height: 100vh !important;
 		height: 100dvh !important;
@@ -339,7 +339,7 @@
 		position: absolute;
 		top: calc(env(safe-area-inset-top, 0px) + 8vh);
 		left: 6vw;
-		transform: none;
+		transform: none !important;
 		height: 23vh;
 		width: 88vw;
 	}
@@ -368,13 +368,13 @@
 	}
 
 	#CprofileLoc{
-		left: 42vw;
-		top: 11.6vh;
+		left: 39vw;
+		top: 12vh;
 		bottom: auto;
-		height: 3.8vh;
-		width: 46vw;
-		font-size: clamp(18px, 4.5vw, 24px);
-		line-height: 1.05;
+		height: 2.8vh;
+		width: 55vw;
+		font-size: clamp(16px, 3.7vw, 20px);
+		line-height: 1;
 		white-space: normal;
 		overflow: hidden;
 	}
@@ -382,10 +382,10 @@
 	#conversationHistory{
 		top: 34vh;
 		left: 6vw;
-		transform: none;
+		transform: none !important;
 		height: 42vh;
-		height: calc(100dvh - 52vh);
-		max-height: 42vh;
+		height: calc(100dvh - 58vh);
+		max-height: 36vh;
 		width: 88vw;
 		font-size: clamp(18px, 4.4vw, 24px);
 		line-height: 1.25;
@@ -400,29 +400,33 @@
 	#conversationInput{
 		position: fixed !important;
 		top: auto !important;
-		bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 8vh)) !important;
+		bottom: 140px !important;
+		bottom: calc(140px + env(safe-area-inset-bottom, 0px)) !important;
 		left: 6vw !important;
-		transform: none;
+		transform: none !important;
 		height: 6vh;
 		width: 60vw;
 		font-size: clamp(17px, 4.2vw, 22px);
 		line-height: 1.1;
 		box-sizing: border-box;
 		padding: 0 2vw;
-		background-color: rgba(0,0,0,0.25);
+		background-color: rgba(0,0,0,0.45);
+		z-index: 200005;
 	}
-	
+
 	#CsendBtn{
 		position: fixed !important;
 		top: auto !important;
-		bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 8vh)) !important;
+		bottom: 140px !important;
+		bottom: calc(140px + env(safe-area-inset-bottom, 0px)) !important;
 		left: auto !important;
 		right: 6vw !important;
-		transform: none;
+		transform: none !important;
 		height: 6vh;
 		width: 24vw;
 		margin: 0;
 		font-size: clamp(18px, 4.8vw, 25px);
 		line-height: 1;
+		z-index: 200005;
 	}
 }
