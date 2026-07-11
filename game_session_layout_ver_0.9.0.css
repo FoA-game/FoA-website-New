@@ -398,9 +398,10 @@
 	}
 
 	#conversationInput{
-		top: auto;
-		bottom: calc(env(safe-area-inset-bottom, 0px) +11vh);
-		left: 6vw;
+		position: fixed !important;
+		top: auto !important;
+		bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 8vh)) !important;
+		left: 6vw !important;
 		transform: none;
 		height: 6vh;
 		width: 60vw;
@@ -410,12 +411,13 @@
 		padding: 0 2vw;
 		background-color: rgba(0,0,0,0.25);
 	}
-
+	
 	#CsendBtn{
-		top: auto;
-		bottom: calc(env(safe-area-inset-bottom, 0px) + 11vh);
-		left: auto;
-		right: 6vw;
+		position: fixed !important;
+		top: auto !important;
+		bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 8vh)) !important;
+		left: auto !important;
+		right: 6vw !important;
 		transform: none;
 		height: 6vh;
 		width: 24vw;
