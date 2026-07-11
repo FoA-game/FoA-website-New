@@ -399,7 +399,7 @@
 
 	#conversationInput{
 		top: auto;
-		bottom: calc(env(safe-area-inset-bottom, 0px) + 5vh);
+		bottom: calc(env(safe-area-inset-bottom, 0px) +11vh);
 		left: 6vw;
 		transform: none;
 		height: 6vh;
@@ -413,7 +413,7 @@
 
 	#CsendBtn{
 		top: auto;
-		bottom: calc(env(safe-area-inset-bottom, 0px) + 5vh);
+		bottom: calc(env(safe-area-inset-bottom, 0px) + 11vh);
 		left: auto;
 		right: 6vw;
 		transform: none;
