@@ -136,3 +136,94 @@ intro_6.addEventListener('click', ()=>{
 	setTimeout(function(){introductionMenu.style.display = `none`;},500);
 	showCurtains()
 });
+
+
+/* ==========================================================================
+   Territory video reveal — click the title + tagline block to collapse the
+   whole section to the center line, then expand a fullscreen video.
+   Currently wired for Upper Nuovartica only.
+   ========================================================================== */
+
+const VIDEO_SOURCES = {
+	UN: 'assets/video/upper-nuovartica.mp4?v=trim1',
+	MC: 'assets/video/mirror-city.mp4?v=trim1',
+	LN: 'assets/video/lower-nuovartica.mp4?v=trim1',
+	FT: 'assets/video/fortress.mp4?v=trim1',
+	FB: 'assets/video/fon-bay.mp4?v=trim1',
+	CG: 'assets/video/crescent-garden.mp4?v=trim1'
+};
+
+const s2Scene            = document.getElementById('s2Scene');
+const s2CenterLine       = document.getElementById('s2CenterLine');
+const territoryVideoLayer= document.getElementById('territoryVideoLayer');
+const territoryVideo     = document.getElementById('territoryVideo');
+const territoryVideoClose= document.getElementById('territoryVideoClose');
+
+let s2Busy = false;
+let currentVideoSrc = null;
+
+function s2EnableEnter(src){
+	currentVideoSrc = src;
+	introductionTitle.classList.add('hasVideo');
+	introductionContainer.classList.add('hasVideo');
+}
+
+function s2DisableEnter(){
+	currentVideoSrc = null;
+	introductionTitle.classList.remove('hasVideo', 's2-hover');
+	introductionContainer.classList.remove('hasVideo', 's2-hover');
+}
+
+function s2Hover(on){
+	if(!currentVideoSrc) return;
+	introductionTitle.classList.toggle('s2-hover', on);
+	introductionContainer.classList.toggle('s2-hover', on);
+}
+
+function enterVideo(){
+	if(s2Busy || !currentVideoSrc) return;
+	s2Busy = true;
+	if(territoryVideo.getAttribute('src') !== currentVideoSrc){
+		territoryVideo.src = currentVideoSrc;
+	}
+	s2CenterLine.classList.add('show');
+	s2Scene.classList.add('s2-collapsed');
+	setTimeout(function(){
+		s2CenterLine.classList.remove('show');
+		territoryVideoLayer.classList.add('s2-open');
+		try { territoryVideo.currentTime = 0; } catch(e){}
+		territoryVideo.play().catch(function(){});
+		s2Busy = false;
+	}, 520);
+}
+
+function exitVideo(){
+	if(s2Busy) return;
+	s2Busy = true;
+	territoryVideo.pause();
+	territoryVideoLayer.classList.remove('s2-open');
+	s2CenterLine.classList.add('show');
+	setTimeout(function(){
+		s2CenterLine.classList.remove('show');
+		s2Scene.classList.remove('s2-collapsed');
+		s2Busy = false;
+	}, 520);
+}
+
+[introductionTitle, introductionContainer].forEach(function(el){
+	el.addEventListener('mouseenter', function(){ s2Hover(true); });
+	el.addEventListener('mouseleave', function(){ s2Hover(false); });
+	el.addEventListener('click', enterVideo);
+});
+
+territoryVideoClose.addEventListener('click', exitVideo);
+territoryVideo.addEventListener('ended', exitVideo);
+
+/* each territory enables its own video; BACK disables the button */
+intro_1.addEventListener('click', function(){ s2EnableEnter(VIDEO_SOURCES.UN); });
+intro_2.addEventListener('click', function(){ s2EnableEnter(VIDEO_SOURCES.MC); });
+intro_3.addEventListener('click', function(){ s2EnableEnter(VIDEO_SOURCES.LN); });
+intro_4.addEventListener('click', function(){ s2EnableEnter(VIDEO_SOURCES.FT); });
+intro_5.addEventListener('click', function(){ s2EnableEnter(VIDEO_SOURCES.FB); });
+intro_6.addEventListener('click', function(){ s2EnableEnter(VIDEO_SOURCES.CG); });
+introBackButton.addEventListener('click', s2DisableEnter);
