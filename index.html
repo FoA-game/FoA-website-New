@@ -8,7 +8,7 @@
 	<link rel="preload" href="images/loader.webp" as="image">
 	<link rel="preload" href="site_global_ver_0.0.1.css?v=logo-events-1" as="style">
 	<link rel="preload" href="community_sec_ver_0.1.2.css" as="style">
-	<link rel="preload" href="sec2_layout_ver_0.0.1.css" as="style">
+	<link rel="preload" href="sec2_layout_ver_0.0.1.css?v=close-left-1" as="style">
 	<link rel="preload" href="game_session_layout_ver_0.9.0.css?v=npc-assets-3" as="style">
 	
 	<link rel="preload" href="images/gameMap.webp" as="image">
@@ -79,7 +79,7 @@
 	</style>
 	<link rel="stylesheet" href="site_global_ver_0.0.1.css?v=logo-events-1">
 	<link rel="stylesheet" href="community_sec_ver_0.1.2.css">
-	<link rel="stylesheet" href="sec2_layout_ver_0.0.1.css">
+	<link rel="stylesheet" href="sec2_layout_ver_0.0.1.css?v=close-left-1">
 	<link rel="stylesheet" href="game_session_layout_ver_0.9.0.css?v=npc-assets-3">
 	
 	<script>
@@ -192,6 +192,7 @@
 		
 		
 		<div id="section2" class="section">
+			<div id="s2Scene">
 			<canvas id="particle-bkg-canvas"></canvas>
 			<canvas id="particle-canvas"></canvas>
 			<div id="intro-container">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
@@ -210,6 +211,12 @@
 			<div id="backBtn">BACK</div>
 			<div id="botCurtain"></div>
 			<div id="topCurtain"></div>
+			</div><!-- /#s2Scene -->
+			<div id="s2CenterLine"></div>
+			<div id="territoryVideoLayer">
+				<video id="territoryVideo" playsinline preload="auto"></video>
+				<div id="territoryVideoClose">CLOSE &#10005;</div>
+			</div>
 		</div>
 		
 		
@@ -443,7 +450,7 @@
 		
 	</script>
 	
-	<script src="scripts/sec2_control_ver_0.0.1.js"></script>
+	<script src="scripts/sec2_control_ver_0.0.1.js?v=close-left-1"></script>
 	<script src="scripts/community_layout_control_ver_1.0.0.js"></script>
 	<script src="scripts/code_rain_ver_1.0.1.js"></script>
 	<script src="scripts/game_main_ver_0.9.4.js?v=fixed-session-5"></script>
